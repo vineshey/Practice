@@ -65,6 +65,8 @@ def h2skill():
     infos = soup.find_all("a", class_="text-link")
 
     for i in infos[0:2]:
+        if not i:
+            continue
         r1 = i.find("h6").text.strip()
         r2 = i["href"]
         r3 = i.find("p", class_="hack-description").text.strip()

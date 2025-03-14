@@ -29,11 +29,12 @@ def fetchHackathons():
     # Use app context for database-related actions within threads
     def run_scraping():
         with app.app_context():
+            devpost()
             h2skill()
             hackerEarth()
             dynamic()
             proElevate()
-            devpost()
+            
     
     # Start the scraping tasks in separate threads
     threads = []
