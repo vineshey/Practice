@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup as bs
-from database import db,Scholarships
 
 # URL of the NSP portal
 
