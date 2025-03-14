@@ -3,6 +3,7 @@ from flask_cors import CORS
 from database import db,Hackathons  # Ensure 'Hackathons' is correctly imported from database
 from scrap import h2skill, hackerEarth, dynamic, proElevate, devpost
 import threading
+import os
 
 app = Flask(__name__)
 
@@ -57,4 +58,4 @@ def getHackathons():
     
     return results
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0",port=int(os.environ.get("PORT",5000)))
