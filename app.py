@@ -2,6 +2,8 @@ from flask import Flask
 from flask_cors import CORS
 from database import db, Hackathons  # Ensure 'Hackathons' is correctly imported from database
 from scrap import h2skill, hackerEarth, dynamic, proElevate, devpost
+from scrap_scholarships import fetch_filtered_links
+from scrap_internships import fetch_internship_data
 import threading
 import os
 
@@ -11,6 +13,7 @@ CORS(app)
 
 # Corrected typo in the configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///hackathons.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///scholarships.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Corrected typo here
 
 db.init_app(app)
@@ -72,6 +75,17 @@ def getHackathons():
     results = Hackathons.query.all()
     results = [result.to_json() for result in results]
     
+    return results
+
+@app.route('/fetch-scholarships')
+def fetchScholarships():
+    results = fetch_filtered_links()
+    return results
+
+
+@app.route('/fetch-internships')
+def fetchInternships():
+    results = fetch_internship_data()
     return results
 
 if __name__ == '__main__':
