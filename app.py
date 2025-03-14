@@ -13,7 +13,6 @@ CORS(app)
 
 # Corrected typo in the configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///hackathons.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///scholarships.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Corrected typo here
 
 db.init_app(app)
