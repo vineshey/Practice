@@ -21,6 +21,10 @@ with app.app_context():
 
 @app.route('/')
 def home():
+    return "hello"
+
+@app.route('/fetch-hackathons')
+def fetchHackathons():
     # Use app context for database-related actions within threads
     def run_scraping():
         with app.app_context():
@@ -46,7 +50,7 @@ def home():
 
     return 'Scraping Initiated! Data is being processed in the background.'
 
-@app.route('/hackathons')
+@app.route('/get-hackathons')
 def getHackathons():
     results = Hackathons.query.all()
     results = [result.to_json() for result in results]
