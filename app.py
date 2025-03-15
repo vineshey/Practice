@@ -20,8 +20,8 @@ db.init_app(app)
 
 # Create all tables in the database using app context
 with app.app_context():
-    #db.create_all()
-    db.drop_all()
+    db.create_all()
+    #db.drop_all()
 
 @app.route('/')
 def home():
