@@ -13,14 +13,15 @@ CORS(app)
 
 # Corrected typo in the configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///hackathons.db'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Corrected typo here
 
 db.init_app(app)
 
 # Create all tables in the database using app context
 with app.app_context():
-    db.create_all()
-    # db.drop_all()
+    #db.create_all()
+    db.drop_all()
 
 @app.route('/')
 def home():
@@ -36,7 +37,7 @@ def fetchHackathons():
             except Exception as e:
                 print(f"Error during devpost scraping: {e}")
 
-            try:
+            '''try:
                 h2skill()
             except Exception as e:
                 print(f"Error during h2skill scraping: {e}")
@@ -54,11 +55,12 @@ def fetchHackathons():
             try:
                 proElevate()
             except Exception as e:
-                print(f"Error during proElevate scraping: {e}")
+                print(f"Error during proElevate scraping: {e}")'''
 
     # Start the scraping tasks in separate threads
     threads = []
-    for target_function in [devpost, h2skill, hackerEarth, dynamic, proElevate]:
+    #for target_function in [devpost, h2skill, hackerEarth, dynamic, proElevate]:
+    for target_function in [devpost]:
         thread = threading.Thread(target=run_scraping)
         thread.start()
         threads.append(thread)
