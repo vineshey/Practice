@@ -78,13 +78,13 @@ def getHackathons():
     
     return results
 
-@app.route('/fetch-scholarships')
+@app.route('/get-scholarships')
 def fetchScholarships():
     results = fetch_filtered_links()
     return results
 
 
-@app.route('/fetch-internships')
+@app.route('/get-internships')
 def fetchInternships():
     results = fetch_internship_data()
     return results
