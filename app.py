@@ -27,6 +27,9 @@ with app.app_context():
 def home():
     return "hello"
 
+"""Tried with all the sites mentioned in scrap.py by using threads...will modifying this code later
+
+
 @app.route('/fetch-hackathons')
 def fetchHackathons():
     # Use app context for database-related actions within threads
@@ -71,11 +74,11 @@ def fetchHackathons():
 
     return 'Scraping Initiated! Data is being processed in the background.'
 
+"""
+
 @app.route('/get-hackathons')
 def getHackathons():
-    results = Hackathons.query.all()
-    results = [result.to_json() for result in results]
-    
+    results = devpost()
     return results
 
 @app.route('/get-scholarships')

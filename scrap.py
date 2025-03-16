@@ -15,7 +15,7 @@ headers = ["Name", "URL", "Location", "Image", "Time Left","Submission Date", "P
 #ws.append(headers)
 
 # DevPost
-
+filtered_hackathons = []
 def devpost():
 
     response = requests.get("https://devpost.com/api/hackathons?page=1&status[]=open")
@@ -48,13 +48,25 @@ def devpost():
     time_left=hackathon["time_left_to_submission"],
     submissions=hackathon["submission_period_dates"],
     prize_amount=hackathon["prize_amount"].replace("<span data-currency-value>", "").replace("</span>", ""),
-                
     description='Empty',
     mode='Empty'
 )
                 db.session.add(new_competition)
                 db.session.commit()
+                filtered_hackathons.append({
+                    "name":hackathon["title"],
+                    "url":hackathon["url"],
+                    "location":hackathon["displayed_location"]["location"],
+                    "image":hackathon["thumbnail_url"],
+                    "time_left":hackathon["time_left_to_submission"],
+                    "submissions":hackathon["submission_period_dates"],
+                    "prize_amount":hackathon["prize_amount"].replace("<span data-currency-value>", "").replace("</span>", ""),
+                    'description':'Empty',
+    'mode':'Empty'
+                })
+    
         print("Succesfully Saved")
+    return filtered_hackathons
 
 def h2skill():
 
@@ -90,8 +102,20 @@ def h2skill():
 )
         db.session.add(new_competition)
         db.session.commit()
+        filtered_hackathons.append({
+                    "name":r1,
+                    "url":r2,
+                    "location":"Empty",
+                    "image":"Empty",
+                    "time_left":"Empty",
+                    "submissions":r4,
+                    "prize_amount":"Empty",
+                    'description':r3,
+    'mode':r5
+                })
 
     print("Succesfully Saved")
+    return filtered_hackathons
 
 def hackerEarth():
     response = requests.get("https://www.hackerearth.com/challenges/hackathon/")
@@ -122,9 +146,20 @@ def hackerEarth():
 )
                 db.session.add(new_competition)
                 db.session.commit()
-
+                filtered_hackathons.append({
+                    "name":name,
+                    "url":apply,
+                    "location":"Empty",
+                    "image":png_link,
+                    "time_left":"Empty",
+                    "submissions":"Empty",
+                    "prize_amount":"Empty",
+                    'description':"Empty",
+    'mode':"Empty"
+                })
 
     print("Succesfully Saved")
+    return filtered_hackathons
 
 def dynamic():
 
@@ -173,9 +208,21 @@ def dynamic():
 )
             db.session.add(new_competition)
             db.session.commit()
+            filtered_hackathons.append({
+                    "name":name,
+                    "url":link,
+                    "location":"Empty",
+                    "image":image,
+                    "time_left":"Empty",
+                    "submissions":date,
+                    "prize_amount":"Empty",
+                    'description':"Empty",
+    'mode':type
+                })
 
 
     print("Done Scrapping All The Opportunities.xlsx")
+    return filtered_hackathons
 
 def proElevate():
 
@@ -223,8 +270,21 @@ def proElevate():
 )
         db.session.add(new_competition)
         db.session.commit()
+        filtered_hackathons.append({
+                    "name":name,
+                    "url":link,
+                    "location":"Empty",
+                    "image":'Empty',
+                    "time_left":"Empty",
+                    "submissions":last,
+                    "prize_amount":"Empty",
+                    'description':desc,
+    'mode':type
+                })
+
 
     print("Succsfully ")
+    return filtered_hackathons
 
 #h2skill()
 #hackerEarth()

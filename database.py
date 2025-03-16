@@ -2,6 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+#created as a part of testing the performance...will be modifyng it later
+
 class Hackathons(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(50),nullable = False)
