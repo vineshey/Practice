@@ -1,0 +1,13 @@
+__pycache__/\n*.pyc\n*.db\n*.csv\nvenv/\n.env
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore database files
+*.db
+
+# Ignore CSV files
+*.csv
+
+# Ignore VS Code settings
+.vscode/
